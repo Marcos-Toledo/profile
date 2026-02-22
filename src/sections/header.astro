@@ -12,6 +12,7 @@ const linksMap = [
 
 <nav
   class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-neutral-border bg-white/80 dark:bg-background-dark/80 backdrop-blur-md"
+  id="main-nav"
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16 items-center">
@@ -44,9 +45,58 @@ const linksMap = [
           Download CV
         </button>
       </div>
-      <div class="md:hidden">
+      <button
+        type="button"
+        class="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors aria-expanded:bg-slate-100 dark:aria-expanded:bg-slate-800"
+        id="menu-toggle"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
         <Icon name="material-symbols:menu" size="24" />
-      </div>
+      </button>
+    </div>
+    <div
+      id="mobile-menu"
+      class="md:hidden hidden flex flex-col gap-4 text-center py-6 border-t border-slate-200 dark:border-neutral-border"
+      role="menu"
+    >
+      {
+        linksMap.map(({ label, href }) => (
+          <a
+            class="text-sm font-medium hover:text-primary transition-colors py-2"
+            href={href}
+            role="menuitem"
+          >
+            {label}
+          </a>
+        ))
+      }
+      <button
+        type="button"
+        class="w-full bg-primary hover:bg-primary/90 text-white px-5 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-primary/20 w-fit"
+        onclick={`window.open('${CV}')`}
+      >
+        Download CV
+      </button>
     </div>
   </div>
 </nav>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+
+  toggle?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+    const isOpen = !menu?.classList.contains("hidden");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      toggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+</script>
