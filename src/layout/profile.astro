@@ -4,7 +4,7 @@ import Header from "../sections/header.astro";
 import Footer from "../sections/footer.astro";
 ---
 
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,9 +15,8 @@ import Footer from "../sections/footer.astro";
     <title>Astro</title>
   </head>
   <body
-    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased scroll-smooth"
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased"
   >
-    <!-- Navigation -->
     <Header />
     <main id="main-wrapper" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <slot />
