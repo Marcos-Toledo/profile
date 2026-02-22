@@ -1,18 +1,17 @@
 ---
 import { Icon } from "astro-icon/components";
+import ProfileImg from "../../public/assets/images/Captura de tela de 2026-02-22 14-48-54.png";
 
 const projectsMap = [
   {
-    imageUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDrbY7rdJuNzl7L9bZkXNvZAXcuHLekxW-ymdJ4F2CShdczE3soQ7DuWahtH0j2HMFTYw-7_zm2MS9RTWLJOa24E3Qz1lehx3SlbzKGNUZiofAVH078-_xJyzgzQX7Hb0mDrK0GVrv-Qwcdu3BMRO3t3JzVEShHO1rNY0uibOdpYjwuQiCPYKAEECAQyFtudCWgXcnYV3TgsGEXW-gpt98W_Vj6kScrfFMd773y-yQmgueP7gL1jpYCdwmBkWz3qputRwDGJx-q0mG9",
+    imageUrl: ProfileImg.src,
     links: [
       { icon: "link", link: "#" },
-      { icon: "code", link: "#" },
+      { icon: "code", link: "https://github.com/Marcos-Toledo/profile" },
     ],
-    tags: ["React", "Typescript"],
-    name: "Analytics Engine 2.0",
-    description:
-      "A real-time data processing engine visualizing millions of events per hour with sub-second latency.",
+    tags: ["AstroJs"],
+    name: "Meu perfil profissional",
+    description: "Objetivo de mostrar e falar sobre a minha pessoa.",
   },
 ];
 ---
@@ -49,6 +48,7 @@ const projectsMap = [
                   <a
                     class="p-2 bg-white rounded-full text-black hover:bg-primary hover:text-white transition-colors"
                     href={link}
+                    target="_blank"
                   >
                     <Icon name={`material-symbols:${icon}`} size="24" />
                   </a>
