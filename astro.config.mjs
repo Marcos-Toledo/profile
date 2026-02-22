@@ -6,6 +6,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://profile-marcostoledo.vercel.app/", // Altere para a URL real do seu site em produção
   vite: {
     plugins: [tailwindcss()]
   },
