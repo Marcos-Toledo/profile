@@ -19,22 +19,32 @@ const {
   noindex = false,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
-const imageURL = image.startsWith("http") ? image : new URL(image, canonicalURL.origin).href;
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site ?? Astro.url.origin,
+);
+const imageURL = image.startsWith("http")
+  ? image
+  : new URL(image, canonicalURL.origin).href;
 ---
 
 <html lang="pt-BR" class="dark scroll-smooth">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO básico -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+    <meta
+      name="robots"
+      content={noindex ? "noindex, nofollow" : "index, follow"}
+    />
     <link rel="canonical" href={canonicalURL.href} />
 
     <!-- Open Graph (Facebook, LinkedIn, etc.) -->
@@ -53,16 +63,26 @@ const imageURL = image.startsWith("http") ? image : new URL(image, canonicalURL.
     <meta name="twitter:image" content={imageURL} />
 
     <!-- Dados estruturados (JSON-LD) para motores de busca -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Marcos Toledo",
-      "url": canonicalURL.href,
-      "image": imageURL,
-      "jobTitle": "Desenvolvedor Front-End",
-      "description": description,
-      "knowsAbout": ["React", "JavaScript", "Front-End", "Ember.js", "Ruby on Rails", "jQuery"],
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Marcos Toledo",
+        url: canonicalURL.href,
+        image: imageURL,
+        jobTitle: "Desenvolvedor Front-End",
+        description: description,
+        knowsAbout: [
+          "React",
+          "JavaScript",
+          "Front-End",
+          "Ember.js",
+          "Ruby on Rails",
+          "jQuery",
+        ],
+      })}
+    />
   </head>
   <body
     class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased"
