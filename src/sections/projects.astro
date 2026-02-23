@@ -9,7 +9,7 @@ const projectsMap = [
       { icon: "link", link: "#" },
       { icon: "code", link: "https://github.com/Marcos-Toledo/profile" },
     ],
-    tags: ["AstroJs"],
+    tags: ["Javascript", "AstroJs", "Typescript", "Tailwindcss"],
     name: "Meu perfil profissional",
     description: "Objetivo de mostrar e falar sobre a minha pessoa.",
   },
@@ -42,7 +42,7 @@ const projectsMap = [
               data-alt="Modern minimalist SaaS analytics dashboard interface with dark theme"
               src={imageUrl}
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
               <div class="flex gap-3">
                 {links.map(({ icon, link }) => (
                   <a

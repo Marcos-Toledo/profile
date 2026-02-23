@@ -67,6 +67,7 @@ import { Icon } from "astro-icon/components";
     <div
       class="bg-white dark:bg-neutral-dark p-8 rounded-3xl border border-slate-200 dark:border-neutral-border shadow-xl"
     >
+      <!-- {result?.error && <p class="text-red-500">{result.error.message}</p>} -->
       <form class="space-y-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-2">
@@ -78,7 +79,11 @@ import { Icon } from "astro-icon/components";
               class="w-full bg-slate-50 dark:bg-background-dark border-slate-200 dark:border-neutral-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
               placeholder="John Doe"
               type="text"
+              name="name"
+              required
+              data-control-input="name"
             />
+            <p id="error-name" class="hidden text-red-500"></p>
           </div>
           <div class="space-y-2">
             <label
@@ -89,7 +94,11 @@ import { Icon } from "astro-icon/components";
               class="w-full bg-slate-50 dark:bg-background-dark border-slate-200 dark:border-neutral-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
               placeholder="john@example.com"
               type="email"
+              name="email"
+              required
+              data-control-input="email"
             />
+            <p id="error-email" class="hidden text-red-500"></p>
           </div>
         </div>
         <div class="space-y-2">
@@ -101,7 +110,11 @@ import { Icon } from "astro-icon/components";
             class="w-full bg-slate-50 dark:bg-background-dark border-slate-200 dark:border-neutral-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
             placeholder="Consulta sobre novo projeto"
             type="text"
+            name="subject"
+            required
+            data-control-input="subject"
           />
+          <p id="error-subject" class="hidden text-red-500"></p>
         </div>
         <div class="space-y-2">
           <label
@@ -111,9 +124,14 @@ import { Icon } from "astro-icon/components";
           <textarea
             class="w-full bg-slate-50 dark:bg-background-dark border-slate-200 dark:border-neutral-border rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
             placeholder="Fale-me sobre o seu projeto..."
-            rows="4"></textarea>
+            rows="4"
+            name="message"
+            required
+            data-control-input="message"></textarea>
+          <p id="error-message" class="hidden text-red-500"></p>
         </div>
         <button
+          type="submit"
           class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 transition-all flex items-center justify-center gap-2"
         >
           Enviar mensagem
@@ -123,3 +141,47 @@ import { Icon } from "astro-icon/components";
     </div>
   </div>
 </section>
+
+<script>
+  import { actions } from "astro:actions";
+
+  const contactForm = document.querySelector("form");
+  const inputElement = document.querySelectorAll("[data-control-input]");
+  const formDataFields: Record<string, HTMLElement | null> = {
+    name: document.querySelector<HTMLElement>("#error-name"),
+    email: document.querySelector<HTMLElement>("#error-email"),
+    subject: document.querySelector<HTMLElement>("#error-subject"),
+    message: document.querySelector<HTMLElement>("#error-message"),
+  };
+
+  inputElement.forEach((input) => {
+    input.addEventListener("keydown", () => {
+      const field = input.getAttribute("name");
+      if (!field) return;
+
+      const element = formDataFields[field];
+      if (!element) return;
+
+      element.innerText = "";
+    });
+  });
+
+  contactForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData(contactForm);
+
+    const result: { [key: string]: string | any } =
+      await actions.contact(formData);
+
+    const nameFields = Object?.keys(result?.error?.fields ?? {});
+
+    nameFields.forEach((field: string) => {
+      const element = formDataFields[field];
+      if (!element) return;
+
+      element.classList.remove("hidden");
+      element.innerText = "";
+      element.append(result?.error?.fields[field]);
+    });
+  });
+</script>
