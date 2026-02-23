@@ -4,11 +4,17 @@ import tailwindcss from "@tailwindcss/vite";
 
 import icon from "astro-icon";
 
+import netlify from "@astrojs/netlify";
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://profile-marcostoledo.vercel.app/", // Altere para a URL real do seu site em produção
+  // Altere para a URL real do seu site em produção
+  site: "https://profile-marcostoledo.vercel.app/",
+
   vite: {
     plugins: [tailwindcss()]
   },
-  integrations: [icon()]
+
+  integrations: [icon()],
+  adapter: netlify()
 });
