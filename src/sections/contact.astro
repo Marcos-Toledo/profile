@@ -165,7 +165,9 @@ import { Icon } from "astro-icon/components";
 
   const contactForm = document.querySelector("form");
   const submitButton = document.querySelector<HTMLElement>("[type='submit']");
-  const inputElement = document.querySelectorAll("[data-control-input]");
+  const inputElement = document.querySelectorAll<HTMLElement>(
+    "[data-control-input]",
+  );
   const formAlert = document.querySelector<HTMLElement>("[role='alert']");
   const formDataFields: Record<string, HTMLElement | null> = {
     name: document.querySelector<HTMLElement>("#error-name"),
@@ -218,10 +220,15 @@ import { Icon } from "astro-icon/components";
     submitButton?.setAttribute("disabled", "true");
     const result: { [key: string]: string | any } = await actions
       .postContact(formData)
-      .finally(() => submitButton?.removeAttribute("disabled"));
+      .finally(() => {
+        submitButton?.removeAttribute("disabled");
+      });
     const nameFields = Object?.keys(result?.error?.fields ?? {});
 
-    if (result?.data?.success) setAlert(result.data.raw, "alert-success");
+    if (result?.data?.success) {
+      contactForm?.reset();
+      setAlert(result.data.raw, "alert-success");
+    }
     if (Object.keys(result?.error).length)
       setAlert(result?.error.message, "alert-error");
 
