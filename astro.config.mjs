@@ -10,7 +10,6 @@ import vercel from "@astrojs/vercel";
 // https://astro.build/config
 export default defineConfig({
   // Altere para a URL real do seu site em produção
-  output: "static",
   site: "https://marcostoledo.vercel.app/",
 
   vite: {
