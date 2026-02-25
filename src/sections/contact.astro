@@ -1,5 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
+
+interface Post {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 ---
 
 <section
@@ -223,11 +230,12 @@ import { Icon } from "astro-icon/components";
       .finally(() => {
         submitButton?.removeAttribute("disabled");
       });
+
     const nameFields = Object?.keys(result?.error?.fields ?? {});
-    console.log({ result });
+
     if (result?.data?.success) {
       contactForm?.reset();
-      setAlert(result.data.raw, "alert-success");
+      setAlert(result.data.message, "alert-success");
     }
     if (Object.keys(result?.error).length)
       setAlert(result?.error.message, "alert-error");

@@ -131,19 +131,32 @@ const server = {
       })
     }),
     handler: async (data) => {
-      const response = await fetch(N8N_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-        credentials: "omit"
-      });
-      if (!response.ok) throw new ActionError({ code: "BAD_REQUEST", message: "Falha ao enviar para o n8n." });
-      return await response.json().catch(
-        () => ({
+      try {
+        const response = await fetch(N8N_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+          // credentials removido pois aqui é server-side
+        });
+        if (!response.ok) {
+          throw new ActionError({
+            code: "BAD_REQUEST",
+            message: "O serviço de e-mail falhou. Tente novamente mais tarde."
+          });
+        }
+        const result = await response.json().catch(() => null);
+        return {
           success: true,
-          raw: `Obrigado, ${data.name}, entraremos em contato!`
-        })
-      );
+          message: `Obrigado, ${data.name}, entraremos em contato!`,
+          data: result
+        };
+      } catch (error) {
+        if (error instanceof ActionError) throw error;
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Erro inesperado ao processar sua solicitação."
+        });
+      }
     }
   })
 };
