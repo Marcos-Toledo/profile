@@ -45,5 +45,6 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 ## Deploy production
 ```sh
 npm run build
-vercel deploy --prebuilt
+npx vercel deploy --prebuilt
+npx vercel --prod
 ```

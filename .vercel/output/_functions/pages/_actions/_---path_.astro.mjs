@@ -1,4 +1,4 @@
-import { g as getActionContext } from '../../chunks/server_B22YNwS9.mjs';
+import { g as getActionContext } from '../../chunks/index_BaZHplyc.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const POST = async (context) => {
