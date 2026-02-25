@@ -137,7 +137,8 @@ const server = {
       const response = await fetch(N8N_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        mode: "cors"
       });
       if (!response.ok) {
         throw new ActionError({
