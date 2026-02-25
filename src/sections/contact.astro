@@ -224,7 +224,7 @@ import { Icon } from "astro-icon/components";
         submitButton?.removeAttribute("disabled");
       });
     const nameFields = Object?.keys(result?.error?.fields ?? {});
-
+    console.log({ result });
     if (result?.data?.success) {
       contactForm?.reset();
       setAlert(result.data.raw, "alert-success");
