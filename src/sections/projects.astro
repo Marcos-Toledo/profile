@@ -9,9 +9,10 @@ const projectsMap = [
       { icon: "link", link: "#" },
       { icon: "code", link: "https://github.com/Marcos-Toledo/profile" },
     ],
-    tags: ["Javascript", "AstroJs", "Typescript", "Tailwindcss"],
+    tags: ["Javascript", "AstroJs", "Typescript", "Tailwindcss", "N8N"],
     name: "Meu perfil profissional",
-    description: "Objetivo de mostrar e falar sobre a minha pessoa.",
+    description:
+      "Objetivo de mostrar e falar sobre a minha pessoa. Form integrado com N8N, salvando em uma planilha do Google Sheets",
   },
 ];
 ---
@@ -57,7 +58,7 @@ const projectsMap = [
             </div>
           </div>
           <div class="p-6 space-y-4">
-            <div class="flex gap-2">
+            <div class="flex flex-wrap gap-2">
               {tags.map((tag) => (
                 <span class="text-[10px] font-bold py-1 px-2 rounded bg-primary/10 text-primary border border-primary/20 uppercase tracking-tighter">
                   {tag}
