@@ -15,7 +15,6 @@ export const server = {
       }),
     }),
     handler: async (data) => {
-      // 1. Verificação de segurança da URL
       if (!N8N_WEBHOOK_URL) {
         throw new ActionError({
           code: "INTERNAL_SERVER_ERROR",
@@ -28,7 +27,6 @@ export const server = {
           method: "POST",
           headers: { "Content-Type": "application/json", "User-Agent": "Astro-Action-Bot" },
           body: JSON.stringify(data),
-          // credentials removido pois aqui é server-side
         });
 
         if (!response.ok) {
@@ -38,7 +36,6 @@ export const server = {
           });
         }
 
-        // Tenta ler o JSON, se falhar, retorna um fallback de sucesso
         const result = await response.json().catch(() => null);
         
         return {

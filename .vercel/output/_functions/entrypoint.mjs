@@ -134,9 +134,8 @@ const server = {
       try {
         const response = await fetch(N8N_WEBHOOK_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "User-Agent": "Astro-Action-Bot" },
           body: JSON.stringify(data)
-          // credentials removido pois aqui é server-side
         });
         if (!response.ok) {
           throw new ActionError({
