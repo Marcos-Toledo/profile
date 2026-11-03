@@ -1,6 +1,6 @@
 import type { MiddlewareHandler } from "astro";
 
-const ALLOWED_ORIGIN = 'https://marcostoledo.vercel.app/';
+const ALLOWED_ORIGIN = 'https://devtoledo.cloud/';
 
 export const onRequest: MiddlewareHandler = async (context, next) => {
   // Preflight CORS (OPTIONS)
