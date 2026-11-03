@@ -8,9 +8,6 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   // Altere para a URL real do seu site em produção
   site: "https://marcostoledo.vercel.app/",
-  security: {
-    checkOrigin: false,
-  },
   vite: {
     plugins: [tailwindcss()]
   },

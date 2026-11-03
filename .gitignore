@@ -26,4 +26,8 @@ pnpm-debug.log*
 # Local Netlify folder
 .netlify
 .vercel
+
+# test artifacts
+.playwright-mcp/
 .env*.local
+.env*

@@ -3,51 +3,51 @@ import { Icon } from "astro-icon/components";
 import CV from "../../public/assets/file/20_de_abril_de_2026_CV.pdf";
 
 const linksMap = [
-  { label: "Sobre", href: "#about" },
-  { label: "Experiência", href: "#experience" },
-  { label: "Projetos", href: "#projects" },
-  { label: "Contato", href: "#contact" },
+  { label: "sobre", href: "#about" },
+  { label: "experiência", href: "#experience" },
+  { label: "projetos", href: "#projects" },
+  { label: "contato", href: "#contact" },
 ];
 ---
 
 <nav
-  class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-neutral-border bg-white/80 dark:bg-background-dark/80 backdrop-blur-md"
+  class="sticky top-0 z-50 w-full border-b border-hairline bg-background/80 backdrop-blur-md"
   id="main-nav"
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16 items-center">
-      <div class="flex items-center gap-2 group cursor-pointer">
-        <div
-          class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white font-bold text-xl"
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16">
+    <div class="flex justify-between h-[76px] items-center">
+      <a href="#about" class="flex items-center gap-3" aria-label="Início">
+        <span
+          class="size-[26px] bg-accent rounded-md flex items-center justify-center text-ink font-bold text-[13px]"
+          >M</span
         >
-          M
-        </div>
-        <span class="text-xl font-bold tracking-tight dark:text-white"
-          >MarcosToledo</span
+        <span class="text-[15px] font-semibold tracking-tight"
+          >marcos.toledo</span
         >
-      </div>
-      <div class="hidden md:flex items-center space-x-8">
+      </a>
+      <div class="hidden md:flex items-center gap-9">
         {
-          linksMap.map(({ label, href }) => (
+          linksMap.map(({ label, href }, i) => (
             <a
-              class="text-sm font-medium hover:text-primary transition-colors"
+              class="font-mono text-xs uppercase tracking-[0.12em] text-muted hover:text-foreground transition-colors"
               href={href}
             >
+              <span class="text-accent-soft mr-1">0{i + 1}</span>
               {label}
             </a>
           ))
         }
 
         <button
-          class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-primary/20 cursor-pointer"
+          class="font-mono text-xs uppercase tracking-[0.12em] border border-hairline rounded-full px-5 py-2.5 hover:border-accent hover:text-accent transition-colors cursor-pointer"
           onclick={`window.open('${CV}')`}
         >
-          Download CV
+          baixar cv ↓
         </button>
       </div>
       <button
         type="button"
-        class="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors aria-expanded:bg-slate-100 dark:aria-expanded:bg-slate-800"
+        class="md:hidden p-2 rounded-lg hover:bg-surface transition-colors aria-expanded:bg-surface"
         id="menu-toggle"
         aria-label="Abrir menu"
         aria-expanded="false"
@@ -58,26 +58,27 @@ const linksMap = [
     </div>
     <div
       id="mobile-menu"
-      class="md:hidden hidden flex flex-col gap-4 text-center py-6 border-t border-slate-200 dark:border-neutral-border"
+      class="md:hidden hidden flex flex-col gap-4 text-center py-6 border-t border-hairline"
       role="menu"
     >
       {
-        linksMap.map(({ label, href }) => (
+        linksMap.map(({ label, href }, i) => (
           <a
-            class="text-sm font-medium hover:text-primary transition-colors py-2"
+            class="font-mono text-sm uppercase tracking-[0.12em] text-muted hover:text-foreground transition-colors py-2"
             href={href}
             role="menuitem"
           >
+            <span class="text-accent-soft mr-1">0{i + 1}</span>
             {label}
           </a>
         ))
       }
       <button
         type="button"
-        class="w-full bg-primary hover:bg-primary/90 text-white px-5 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-primary/20 w-fit cursor-pointer"
+        class="font-mono text-xs uppercase tracking-[0.12em] border border-hairline rounded-full px-5 py-3 hover:border-accent hover:text-accent transition-colors w-fit mx-auto cursor-pointer"
         onclick={`window.open('${CV}')`}
       >
-        Download CV
+        baixar cv ↓
       </button>
     </div>
   </div>

@@ -4,11 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary": "#5048e5",
-        "background-light": "#f6f6f8",
-        "background-dark": "#0f172a",
-        "neutral-dark": "#1e293b",
-        "neutral-border": "#334155",
+        "accent": "#6C63FF",
+        "accent-soft": "#8B85FF",
+        "background": "#0C0C0F",
+        "surface": "#141419",
+        "hairline": "#24242C",
+        "foreground": "#F2F1EC",
+        "muted": "#8E8E97",
+        "paper": "#F2F1EC",
+        "ink": "#0C0C0F",
       },
       fontFamily: {
         "display": ["Inter", "sans-serif"]

@@ -49,8 +49,8 @@ export function contact(): Contact {
         contactForm?.reset();
         setAlert(result.data.message, "alert-success", formAlert);
       }
-      if (Object.keys(result?.error).length)
-        setAlert(result?.error.message, "alert-error", formAlert);
+      if (result?.error)
+        setAlert(result.error.message, "alert-error", formAlert);
 
       nameFields.forEach((field: string) => {
         const element = formDataFields[field];

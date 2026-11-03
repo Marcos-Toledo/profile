@@ -28,7 +28,7 @@ const imageURL = image.startsWith("http")
   : new URL(image, canonicalURL.origin).href;
 ---
 
-<html lang="pt-BR" class="dark scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -84,11 +84,12 @@ const imageURL = image.startsWith("http")
       })}
     />
   </head>
-  <body
-    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased"
-  >
+  <body class="bg-background text-foreground antialiased overflow-x-clip">
     <Header />
-    <main id="main-wrapper" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main
+      id="main-wrapper"
+      class="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16"
+    >
       <slot />
     </main>
     <Footer />

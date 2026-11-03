@@ -1,76 +1,107 @@
 ---
-import { Icon } from "astro-icon/components";
 import ProfileImg from "../../public/assets/images/Captura de tela de 2026-02-22 14-48-54.png";
+import Fecho from "../../public/assets/images/fecho.png";
+import Linktree from "../../public/assets/images/linktree.png";
+import MonitorProcessual from "../../public/assets/images/monitor-processual.png";
 
 const projectsMap = [
   {
     imageUrl: ProfileImg.src,
+    alt: "Captura de tela da landing page deste portfólio",
     links: [
-      { icon: "link", link: "#" },
-      { icon: "code", link: "https://github.com/Marcos-Toledo/profile" },
+      { label: "site", link: "#" },
+      { label: "repo", link: "https://github.com/Marcos-Toledo/profile" },
     ],
-    tags: ["Javascript", "AstroJs", "Typescript", "Tailwindcss", "N8N"],
-    name: "Meu perfil profissional",
+    tags: "astro · tailwind · typescript · n8n",
+    name: "Este site",
     description:
-      "Objetivo de mostrar e falar sobre a minha pessoa. Form integrado com N8N, salvando em uma planilha do Google Sheets",
+      "Portfólio em Astro com formulário integrado a N8N, persistindo leads num Google Sheets.",
+  },
+  {
+    imageUrl: Linktree.src,
+    alt: "Interface do MeuLynx, criador de páginas de links",
+    links: [{ label: "site", link: "https://meulynx.devtoledo.cloud/" }],
+    tags: "laravel · inertia · react · pix",
+    name: "MeuLynx",
+    description:
+      "Páginas de links pessoais estilo Linktree — workspaces, blocos de conteúdo, checkout Pix, agendamentos e QR Code.",
+  },
+  {
+    imageUrl: MonitorProcessual.src,
+    alt: "Dashboard do Monitor Processual",
+    links: [
+      { label: "site", link: "https://monitor.srv1124993.hstgr.cloud/" },
+    ],
+    tags: "react · nestjs · typescript",
+    name: "Monitor Processual",
+    description:
+      "Monitoramento de processos judiciais via API pública do DataJud (CNJ), com notificações por e-mail.",
+  },
+  {
+    imageUrl: Fecho.src,
+    alt: "Interface do Fecho, CRM imobiliário",
+    links: [{ label: "site", link: "https://fecho.devtoledo.cloud/login" }],
+    tags: "hono · prisma · react pwa",
+    name: "Fecho",
+    description:
+      "CRM imobiliário mobile-first para o corretor autônomo, centrado no fluxo do WhatsApp. API + PWA.",
   },
 ];
 ---
 
-<section
-  class="py-20 border-t border-slate-200 dark:border-neutral-border"
-  id="projects"
->
-  <div class="flex flex-col md:flex-row justify-between mb-16 gap-4">
-    <div class="text-left">
-      <h2 class="text-3xl lg:text-4xl font-bold mb-4">Trabalho em destaque</h2>
-      <div class="h-1 w-20 bg-primary rounded-full"></div>
+<section class="py-20 lg:py-24" id="projects">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+    <div>
+      <p class="font-mono text-[13px] uppercase tracking-[0.2em] text-accent">
+        03 — projetos
+      </p>
+      <h2 class="mt-3 text-4xl lg:text-5xl font-bold tracking-[-0.02em]">
+        Trabalho em destaque
+      </h2>
     </div>
-    <p class="text-slate-600 dark:text-slate-400 max-w-sm">
-      Uma seleção de projetos que demonstram minhas habilidades técnicas e minha
-      visão arquitetônica.
+    <p
+      class="font-mono text-xs uppercase tracking-[0.15em] text-muted max-w-[260px] md:text-right"
+    >
+      Seleção de produtos e ferramentas que mostram stack e visão
     </p>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Project 1 -->
+  <div class="mt-14 border-t border-hairline divide-y divide-hairline">
     {
-      projectsMap.map(({ imageUrl, links, tags, name, description }) => (
-        <div class="group bg-white dark:bg-neutral-dark rounded-2xl overflow-hidden border border-slate-200 dark:border-neutral-border hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-          <div class="aspect-video relative overflow-hidden">
-            <img
-              alt="SaaS Analytics Dashboard Project"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              data-alt="Modern minimalist SaaS analytics dashboard interface with dark theme"
-              src={imageUrl}
-            />
-            <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-              <div class="flex gap-3">
-                {links.map(({ icon, link }) => (
+      projectsMap.map(({ imageUrl, alt, links, tags, name, description }, i) => (
+        <article class="py-9 flex flex-col md:flex-row md:items-center gap-5 md:gap-9">
+          <span class="font-mono text-sm font-bold text-[#3A3A44] hidden md:block">
+            0{i + 1}
+          </span>
+          <img
+            class="w-full md:w-32 md:h-20 aspect-video md:aspect-auto object-cover rounded-lg border border-hairline"
+            src={imageUrl}
+            alt={alt}
+            loading="lazy"
+          />
+          <div class="flex-1 min-w-0">
+            <h3 class="text-2xl md:text-3xl font-bold tracking-tight flex items-center gap-3 flex-wrap">
+              {name}
+              <span class="flex gap-4">
+                {links.map(({ label, link }) => (
                   <a
-                    class="p-2 bg-white rounded-full text-black hover:bg-primary hover:text-white transition-colors"
+                    class="font-mono text-[13px] font-normal text-accent-soft hover:text-accent transition-colors"
                     href={link}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <Icon name={`material-symbols:${icon}`} size="24" />
+                    {label} ↗
                   </a>
                 ))}
-              </div>
-            </div>
-          </div>
-          <div class="p-6 space-y-4">
-            <div class="flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <span class="text-[10px] font-bold py-1 px-2 rounded bg-primary/10 text-primary border border-primary/20 uppercase tracking-tighter">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <h3 class="text-xl font-bold">{name}</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-400">
+              </span>
+            </h3>
+            <p class="mt-2 text-muted text-[15px] leading-relaxed max-w-xl">
               {description}
             </p>
           </div>
-        </div>
+          <p class="font-mono text-[11px] uppercase tracking-[0.15em] text-muted md:text-right shrink-0">
+            {tags}
+          </p>
+        </article>
       ))
     }
   </div>
